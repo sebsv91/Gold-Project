@@ -1,11 +1,11 @@
-import Product from "../schemas/productSchema.js";
+import Product from "../models/productModel.js";
 
 export const getProducts = async (req, res) => {
   try {
     const products = await Product.find();
     res.json(products);
   } catch (error) {
-    res.status(500).json({ message: "Error al obtener productos", error });
+    res.status(500).json({ message: "Error al obtener los productos", error });
   }
 };
 
@@ -21,7 +21,7 @@ export const createProduct = async (req, res) => {
     });
 
     const savedProduct = await newProduct.save();
-    res.status(201).json(savedProduct);
+    res.json(savedProduct);
   } catch (error) {
     res.status(500).json({ message: "Error al crear el producto", error });
   }
