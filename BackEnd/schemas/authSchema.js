@@ -1,10 +1,10 @@
-import z from "zod";
+import { z } from "zod";
 
-const User = z.object({
+export const registerSchema = z.object({
   username: z
     .string({
       invalid_type_error: "Nombre debe ser una serie de caracteres",
-      required_error: "Nombre es requerido",
+      required_error: "Nombre de usuario es requerido",
     })
     .min(3, { message: "El nombre debe tener al menos 3 caracteres" })
     .max(25, { message: "El nombre no puede exceder los 25 caracteres" }),
@@ -37,5 +37,22 @@ const User = z.object({
     })
     .regex(/[\W_]/, {
       message: "La contraseña debe contener al menos un carácter especial",
+    }),
+});
+
+export const loginSchema = z.object({
+  email: z
+    .string({
+      required_error: "Email es requerido",
+    })
+    .email({
+      message: "Email invalido",
+    }),
+  password: z
+    .string({
+      required_error: "La contraseña es requerida",
+    })
+    .min(6, {
+      message: "La contraseña debe tener minimo 6 caracteres",
     }),
 });
