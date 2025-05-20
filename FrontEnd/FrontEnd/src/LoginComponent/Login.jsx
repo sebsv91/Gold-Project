@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 function Login() {
   return (
     <div className="flex flex-col h-screen w-full items-center justify-center gap-8">
@@ -46,9 +48,10 @@ function Login() {
       </button>
       <div className="flex gap-2 items-center">
         <span>¿No tienes cuenta?</span>
-        <a href="/register" className="text-[#fa6400]">
+        <Link to="/register" className="text-[#fa6400]">
+          {" "}
           ¡Regístrate ahora!
-        </a>
+        </Link>
       </div>
     </div>
   );

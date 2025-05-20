@@ -1,0 +1,71 @@
+function Registration() {
+  return (
+    <div className="flex flex-col h-screen w-full items-center justify-center gap-8">
+      <img src="" alt="" />
+      <h1 className="text-4xl font-bold">Regístrate ahora</h1>
+      <div className="flex flex-col gap-2 justify-center">
+        <label htmlFor="name" className="text-lg font-semibold">
+          Nombre
+        </label>
+        <input
+          id="name"
+          type="text"
+          placeholder="Nombre"
+          className="peer border border-gray-500 rounded-md w-130 text-lg focus:border-[#ffcd40] focus:outline focus:outline-[#ffcd40] p-2 invalid:border-pink-500 invalid:text-pink-600 focus:invalid:border-pink-500 focus:invalid:outline-pink-500"
+        />
+      </div>
+      <div className="flex flex-col gap-2 justify-center">
+        <label htmlFor="phone" className="text-lg font-semibold">
+          Teléfono
+        </label>
+        <input
+          id="phone"
+          type="tel"
+          placeholder="5512345678"
+          className="peer border border-gray-500 rounded-md w-130 text-lg focus:border-[#ffcd40] focus:outline focus:outline-[#ffcd40] p-2 invalid:border-pink-500 invalid:text-pink-600 focus:invalid:border-pink-500 focus:invalid:outline-pink-500"
+        />
+      </div>
+      <div className="flex flex-col gap-2 justify-center">
+        <label htmlFor="email" className="text-lg font-semibold">
+          Correo electrónico
+        </label>
+        <input
+          id="email"
+          type="email"
+          placeholder="nombre@email.com"
+          className="peer border border-gray-500 rounded-md w-130 text-lg focus:border-[#ffcd40] focus:outline focus:outline-[#ffcd40] p-2 invalid:border-pink-500 invalid:text-pink-600 focus:invalid:border-pink-500 focus:invalid:outline-pink-500"
+        />
+        <p
+          className="text-pink-600 invisible peer-invalid:peer-dirty:visible peer-invalid:peer-focus:visible"
+          aria-live="assertive"
+        >
+          Por favor, ingresa un correo electrónico válido.
+        </p>
+      </div>
+      <div className="flex flex-col gap-2 justify-center">
+        <label htmlFor="password" className="text-lg font-semibold">
+          Contraseña
+        </label>
+        <input
+          id="password"
+          type="password"
+          className="border border-gray-500 rounded-md w-130 text-lg focus:border-[#ffcd40] focus:outline focus:outline-[#ffcd40] p-2 invalid:border-pink-500 invalid:text-pink-600 focus:invalid:border-pink-500 focus:invalid:outline-pink-500"
+        />
+      </div>
+      <button
+        type="submit"
+        className="w-130 text-lg bg-[#ffcd40] rounded-md p-2 cursor-pointer"
+      >
+        Registrarse
+      </button>
+      <div className="flex gap-2 items-center">
+        <span>¿Ya tienes cuenta?</span>
+        <a href="/login" className="text-[#fa6400]">
+          Inicia sesión
+        </a>
+      </div>
+    </div>
+  );
+}
+
+export default Registration;
