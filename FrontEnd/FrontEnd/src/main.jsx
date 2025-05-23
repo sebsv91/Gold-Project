@@ -8,11 +8,29 @@ import App from "./App.jsx";
 import Login from "./LoginComponent/Login.jsx";
 import NotFoundPage from "./NotFoundPage/NotFoundPage.jsx";
 import Registration from "./LoginComponent/Registration.jsx";
+import Store from "./Store/Store.jsx";
+import ShoppingCart from "./Items/ShoppingCart.jsx";
+import LikedItems from "./Items/LikedItems.jsx";
+
+import ProtectedRoute from "./ProtectedRoute.jsx";
 
 const router = createBrowserRouter([
+  { path: "/", element: <App /> },
   { path: "/login", element: <Login /> },
   { path: "/register", element: <Registration /> },
-  { path: "/", element: <App /> },
+
+  {
+    element: <ProtectedRoute />,
+    children: [
+      {
+        path: "/store",
+        element: <Store />,
+      },
+      { path: "/shoppingCart", element: <ShoppingCart /> },
+      { path: "/likedItems", element: <LikedItems /> },
+    ],
+  },
+
   { path: "*", element: <NotFoundPage /> },
 ]);
 
