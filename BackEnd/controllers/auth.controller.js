@@ -5,6 +5,21 @@ import { createAccessToken } from "../libs/jwt.js";
 export const register = async (req, res) => {
   const { username, phone, email, password } = req.body;
   try {
+    const usernameExists = await User.findOne({ username });
+    if (usernameExists) {
+      return res.status(400).json(["El nombre de usuario ya está en uso"]);
+    }
+
+    const phoneExists = await User.findOne({ phone });
+    if (phoneExists) {
+      return res.status(400).json(["El número de teléfono ya está en uso"]);
+    }
+
+    const emailExists = await User.findOne({ email });
+    if (emailExists) {
+      return res.status(400).json(["El correo electrónico ya está en uso"]);
+    }
+
     const passwordHash = await bcrypt.hash(password, 10);
 
     const newUser = new User({
@@ -38,16 +53,17 @@ export const register = async (req, res) => {
 };
 
 export const login = async (req, res) => {
-  const { email, password } = req.body;
   try {
+    const { email, password } = req.body;
     const userFound = await User.findOne({ email });
+
     if (!userFound)
-      return res.status(400).json({ message: "Invalid credentials" });
+      return res.status(400).json({ message: ["Credenciales invalidas"] });
 
     const isMatch = await bcrypt.compare(password, userFound.password);
 
     if (!isMatch)
-      return res.status(400).json({ message: "Invalid credentials" });
+      return res.status(400).json({ message: ["Credenciales invalidas"] });
 
     const token = await createAccessToken({ id: userFound._id });
 
