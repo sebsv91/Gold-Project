@@ -56,6 +56,7 @@ function Login() {
             {...register("password", { required: true })}
             id="password"
             type="password"
+            placeholder="Contraseña"
             className="w-2xs 2xl:w-md border border-gray-500 rounded-md text-lg focus:border-[#ffcd40] focus:outline focus:outline-[#ffcd40] p-2 invalid:border-pink-500 invalid:text-pink-600 focus:invalid:border-pink-500 focus:invalid:outline-pink-500"
           />
           {errors.password && (
