@@ -1,14 +1,18 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Link } from "react-router-dom";
 import {
   faCircleUser,
   faHeart,
   faCartShopping,
   faGem,
   faBars,
+  faRightFromBracket,
 } from "@fortawesome/free-solid-svg-icons";
-import { Link } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 
 function Navbar() {
+  const { isAuthenticated, logout, user } = useAuth();
+
   return (
     <>
       <div className="sticky top-0 bg-white z-50">
@@ -40,12 +44,34 @@ function Navbar() {
                 className=" rounded-full p-2 hover:text-[#eda14e] text-lg "
               />{" "}
             </button>
-            <Link to="/login">
-              <FontAwesomeIcon
-                icon={faCircleUser}
-                className="rounded-full p-2 hover:text-[#eda14e] text-xl"
-              />
-            </Link>
+
+            {isAuthenticated ? (
+              <>
+                <Link
+                  to="/"
+                  onClick={() => {
+                    logout();
+                  }}
+                >
+                  <FontAwesomeIcon
+                    icon={faRightFromBracket}
+                    className="rounded-full p-2 hover:text-[#eda14e] text-xl"
+                  />
+                </Link>
+                <p className="font-bold animate-bounce text-center hidden lg:flex">
+                  ¡Bienvenido {user.username}!
+                </p>
+              </>
+            ) : (
+              <>
+                <Link to="/login">
+                  <FontAwesomeIcon
+                    icon={faCircleUser}
+                    className="rounded-full p-2 hover:text-[#eda14e] text-xl"
+                  />
+                </Link>
+              </>
+            )}
           </div>
         </div>
         <div className="flex justify-center">
